@@ -11,5 +11,5 @@ export default async function Page({
     const users: GroupMemberDto[] = await fetch(`http://127.0.0.1:3001/groupMembers/group/${id}`).then((res) => res.json())
 
 
-    return <Payment users={users}></Payment>
+    return <Payment users={users} groupId={id}></Payment>
 }

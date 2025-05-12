@@ -28,7 +28,15 @@ export interface ExpenseSplitDto {
 export interface  GroupMemberDto{
     readonly id: number;
     readonly name: string;
+    readonly userId: number;
 }
+
+export interface  UserDto{
+    readonly id: number;
+    readonly name: string;
+    readonly email: string;
+}
+
 
 export interface  CreateGroupMemberDto{
     readonly userId: number;
@@ -49,4 +57,10 @@ export interface  SettlementDto{
     readonly toMember: GroupMemberDto;
     readonly amount: number;
     readonly createdAt: string;
+}
+
+export interface  GroupDto{
+    readonly id: number;
+    readonly name: string;
+    readonly description?: string;
 }

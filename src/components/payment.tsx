@@ -1,12 +1,13 @@
 'use client'
 import { GroupMemberDto } from "dto/all.dto";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { redirect } from 'next/navigation'
 
-export default function Payment({ users }: { users: GroupMemberDto[] }) {
-
+export default function Payment({ users, groupId }: { users: GroupMemberDto[], groupId: string }) {
     const [formData, setFormData] = useState({
         name: '',
         fromGroupMemberId: 0,
+        groupId: groupId,
         toGroupMemberId: 0,
         amount: 0
     });
@@ -22,7 +23,7 @@ export default function Payment({ users }: { users: GroupMemberDto[] }) {
         event.preventDefault()
 
         try {
-            await fetch('http://localhost:3001/settlements', {
+            await fetch('/api/settlements', {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
@@ -35,7 +36,9 @@ export default function Payment({ users }: { users: GroupMemberDto[] }) {
             // Capture the error message to display to the user
             console.error(error)
         } finally {
+
         }
+        redirect(`/group/${groupId}`)
     }
 
     return <form onSubmit={onSubmit}>
