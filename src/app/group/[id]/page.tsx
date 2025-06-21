@@ -1,32 +1,59 @@
-import { PaymentItem, SpendItem } from "components/Item"
-import { ExpenseDto, SettlementDto } from "dto/all.dto" 
-import Link from "next/link"
+"use client"
+import GroupMembersPage from 'components/group-members/group-members.component';
+import { useGroupMember } from 'hooks/use-group-member.hook';
+import { useMessage } from 'hooks/use-message.hook';
+import React, { useState } from 'react';
 
-export default async function Page({
-	params,
-}: {
-	params: Promise<{ id: string }>
-}) {	
-	const { id } = await params
-	const expenses : ExpenseDto[]= await fetch(`http://127.0.0.1:3001/expenses/group/${id}`).then((res) => res.json())
-	const settlements : SettlementDto[]= await fetch(`http://127.0.0.1:3001/settlements/group/${id}`).then((res) => res.json())
-	return <div>
-		<Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={`${id}/payment`}>crear payment</Link>
-		<Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={`${id}/spent`}>spent</Link>
-		<Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={`${id}/member`}>Add member</Link>
-		<ul role="list" className="divide-y divide-gray-100">
-			{
-				expenses.map((e, index) => {
-						return <SpendItem key={index} activity={e}></SpendItem>
-				})
-			}
-		</ul>
-		<ul role="list" className="divide-y divide-gray-100">
-			{
-				settlements.map((e, index) => {
-						return <PaymentItem key={index} activity={e}></PaymentItem>
-					})
-			}
-		</ul>
-	</div>
-}
+
+export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use(params);
+  const { message } = useMessage();
+  const groupMembersHook = useGroupMember(+id);
+  const loading = groupMembersHook.loading;
+  const [paginaActual, setPaginaActual] = useState<'group-members' | 'settlements' | 'payments'> ('group-members');
+  
+  return (
+    <div className="min-h-screen bg-gray-100 font-sans text-gray-900">      
+      {message.text && (
+        <div className={`fixed top-4 right-4 p-4 rounded-md shadow-lg z-50
+          ${message.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}
+        >
+          {message.text}
+        </div>
+      )}
+
+      {loading && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+          <p className="ml-4 text-white text-lg">loading...</p>
+        </div>
+      )}
+
+      <nav className="bg-gray-800 p-4 shadow-lg">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="text-white text-2xl font-bold rounded-lg">Split Wise</div>
+          <div className="flex space-x-6">
+            <button
+              onClick={() => setPaginaActual('group-members')}
+              className={`px-4 py-2 rounded-md transition duration-300 ease-in-out
+                ${paginaActual === 'group-members' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:text-white hover:bg-gray-700'}`}
+            >
+              Members
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <main className="container mx-auto mt-8 p-4">
+        {paginaActual === 'group-members' && (
+          <GroupMembersPage
+            groupMembers={groupMembersHook.groupMembers}
+            setSelectedGroupMember={groupMembersHook.setSelectedGroupMember}
+            setShowGroupMemberModal={groupMembersHook.setShowGroupMemberModal}
+            deleteGroupMember={groupMembersHook.deleteGroupMember}
+          />
+        )}
+      </main>
+    </div>
+  );
+};
