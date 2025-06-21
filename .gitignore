@@ -398,8 +398,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-<<<<<<< HEAD
-=======
 
 .next/
->>>>>>> c635c46 (first commit)
