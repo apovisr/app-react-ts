@@ -4,9 +4,12 @@ import { useMessage } from './use-message.hook';
 import { GroupMember } from 'model/group-member';
 
 import * as groupMembersApi from 'external/api/group-members.api';
+import { getUsersNotBelongGroup } from 'external/api/user.api';
+import { User } from 'model/user.model';
 
 export function useGroupMember(groupId: number) {
     const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(false);
     const [showGroupMemberModal, setShowGroupMemberModal]
         = useState<boolean>(false);
@@ -19,6 +22,7 @@ export function useGroupMember(groupId: number) {
             setLoading(true);
             try {
                 setGroupMembers(await groupMembersApi.getGroupMembersByGroupId(groupId));
+                setUsers(await getUsersNotBelongGroup(groupId));
             } catch (error) {
                 showMesage('No se pudieron cargar los productos.', 'error');
                 console.error('Error al cargar productos:', error);
@@ -29,12 +33,13 @@ export function useGroupMember(groupId: number) {
         loadGroupMembers();
     }, []);
 
-    const addGroupMember = async (groupMember: Omit<GroupMember, 'id'>) => {
+    const addGroupMember = async (userId: number) => {
         setLoading(true);
 
         try {
-            const nuevoProducto = await groupMembersApi.createGroupMember(groupMember);
+            await groupMembersApi.createGroupMember({groupId, userId});
             setGroupMembers(await groupMembersApi.getGroupMembersByGroupId(groupId));
+            setUsers(await getUsersNotBelongGroup(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowGroupMemberModal(false);
         } catch (error) {
@@ -61,6 +66,7 @@ export function useGroupMember(groupId: number) {
 
     return {
         groupMembers,
+        users,
         loading,
         addGroupMember,
         deleteGroupMember,

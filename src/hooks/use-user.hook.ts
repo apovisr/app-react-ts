@@ -4,7 +4,7 @@ import * as usersApi from 'external/api/user.api';
 import { User } from 'model/user.model';
 import { useMessage } from './use-message.hook';
 
-export function userUser() {
+export function useUser() {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(false);
     const [showUserModal, setShowUserModal]

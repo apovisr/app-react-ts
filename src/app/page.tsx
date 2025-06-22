@@ -6,7 +6,7 @@ import ModalUser from 'components/user/user-modal.componet';
 import UsersPage from 'components/user/user.component';
 import { useGroup } from 'hooks/use-group.hook';
 import { useMessage } from 'hooks/use-message.hook';
-import { userUser } from 'hooks/use-user.hook';
+import { useUser } from 'hooks/use-user.hook';
 import { Group } from 'model/group.model';
 import { User } from 'model/user.model';
 import React, { useState } from 'react';
@@ -16,7 +16,7 @@ export default function Home() {
   const [paginaActual, setPaginaActual] = useState<'users' | 'groups'>('users');
 
   const { message } = useMessage();
-  const usersHook = userUser();
+  const usersHook = useUser();
   const groupsHook = useGroup();
 
 

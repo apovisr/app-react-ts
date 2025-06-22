@@ -16,7 +16,7 @@ const GroupMembersPage: React.FC<GroupMemberPageProps> = ({
 }) => (
     <div className="p-6 bg-white rounded-lg shadow-md">
     <h1 className="text-3xl font-bold mb-6 text-gray-800 flex justify-between items-center">
-      Clientes
+      Miembros
       <button
         onClick={() => { setSelectedGroupMember(null); setShowGroupMemberModal(true); }}
         className="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition duration-300 ease-in-out"

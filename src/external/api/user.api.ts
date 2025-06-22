@@ -25,6 +25,12 @@ export async function getUsers(): Promise<User[]> {
         .then(res => res.json());
 }
 
+
+export async function getUsersNotBelongGroup(id: number): Promise<User[]> {
+    return fetch('/api/users/not/group/' + id)
+        .then(res => res.json());
+}
+
 export async function createUser(user: Omit<User, 'id'>): Promise<void> {
     fetch('/api/users', {
         method: 'POST',
