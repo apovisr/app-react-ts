@@ -19,12 +19,12 @@ export let groups: Group[] = [
 ];
 
 export async function getGroups(): Promise<Group[]> {
-    return fetch('/api/groups')
+    return fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups`)
     .then(res => res.json());
 }
 
 export async function createGroup(group: Omit<Group, 'id'>): Promise<void> {
-    fetch('/api/groups', {
+    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

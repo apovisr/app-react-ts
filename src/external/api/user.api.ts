@@ -21,18 +21,18 @@ export let users: User[] = [
 ];
 
 export async function getUsers(): Promise<User[]> {
-    return fetch('/api/users')
+    return fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users`)
         .then(res => res.json());
 }
 
 
 export async function getUsersNotBelongGroup(id: number): Promise<User[]> {
-    return fetch('/api/users/not/group/' + id)
+    return fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users/not/group/` + id)
         .then(res => res.json());
 }
 
 export async function createUser(user: Omit<User, 'id'>): Promise<void> {
-    fetch('/api/users', {
+    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
