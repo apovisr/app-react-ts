@@ -1,5 +1,6 @@
 "use client"
 import CalculatesPage from 'components/calculate/calculate.component';
+import ModalExpenseDetail from 'components/expense/expense-detail-modal.compoment';
 import ModalExpense from 'components/expense/expense-modal.compoment';
 import ExpensesPage from 'components/expense/expense.compoment';
 import ModalGroupMember from 'components/group-members/group-member-modal.componet';
@@ -120,15 +121,23 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
           save={groupMembersHook.addGroupMember}
         />
       )}
-      {expensesHook.showExpenseModal && (
+      {expensesHook.showExpenseModal && ((expensesHook.selectedExpense == null && (
         <ModalExpense
+          expense={expensesHook.selectedExpense}
           groupMembers={groupMembersHook.groupMembers}
           close={() => {
             expensesHook.setShowExpenseModal(false);
           }}
           save={expensesHook.addExpense}
         />
-      )}
+      )) || (expensesHook.selectedExpense && (
+        <ModalExpenseDetail
+          expense={expensesHook.selectedExpense}
+          close={() => {
+            expensesHook.setShowExpenseModal(false);
+          }}
+        />
+      )))}
       {settlementsHook.showSettlementModal && (
         <ModalSettlement
           groupMembers={groupMembersHook.groupMembers}

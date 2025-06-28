@@ -1,19 +1,19 @@
 "use client"
-import { CreateExpense, ExpenseSplitBuild } from "model/expense";
+import { CreateExpense, Expense, ExpenseSplitBuild } from "model/expense";
 import { GroupMember } from "model/group-member";
 import { useState } from "react";
 interface ExpenseModalProps {
+  expense: Expense| null;
   groupMembers: GroupMember[];
   close: () => void;
   save: (expense: CreateExpense) => Promise<void>;
 }
 
-const ModalExpense: React.FC<ExpenseModalProps> = ({ groupMembers, close, save }) => {
+const ModalExpense: React.FC<ExpenseModalProps> = ({ expense, groupMembers, close, save }) => {
   const [splitExpenses, setSplitExpenses] = useState<ExpenseSplitBuild[]>(groupMembers.map((e) => {return {id: e.id, name: e.name, amount: 0, checked: false};}));
   const [paidByGroupMemberId, setPaidByGroupMemberId] = useState<number>(0);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [name, setName] = useState<string>('');
-
 
   const sendForm = (e: React.FormEvent) => {
     e.preventDefault();

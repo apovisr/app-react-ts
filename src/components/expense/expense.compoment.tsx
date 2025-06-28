@@ -54,6 +54,12 @@ const ExpensesPage: React.FC<ExpensePageProps> = ({
                   >
                     Eliminar
                   </button>
+                  <button
+                    onClick={() => { setSelectedExpense(expense); setShowExpenseModal(true); }}
+                    className="text-indigo-600 hover:text-indigo-900 mr-4"
+                  >
+                    Ver detalle
+                  </button>
                 </td>
               </tr>
             ))}
