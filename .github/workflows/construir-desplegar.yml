@@ -16,6 +16,8 @@ jobs:
       AWS_ACCOUNT_ID: ${{ vars.AWS_ACCOUNT_ID }}
 
     steps:
+      - name: Recuperar el código
+        uses: actions/checkout@v3
 
       - name: Instalar dependencias Frontend
         run: npm install
