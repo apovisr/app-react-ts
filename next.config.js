@@ -5,7 +5,7 @@ module.exports = {
         return [
           {
             source: '/api/:path*',
-            destination: 'http://127.0.0.1:3001/api/:path*',
+            destination: `${process.env.NEXT_PUBLIC_URL_BASE_API}/:path*` ,
           },
         ]
       },
