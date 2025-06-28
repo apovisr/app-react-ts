@@ -67,7 +67,6 @@ export default function Home() {
             users={usersHook.users}
             setSelectedUser={usersHook.setSelectedUser}
             setShowUserModal={usersHook.setShowUserModal}
-            deleteUser={usersHook.deleteUser}
           />
         )}
 
@@ -76,7 +75,6 @@ export default function Home() {
             groups={groupsHook.groups}
             setSelectedGroup={groupsHook.setSelectedGroup}
             setShowGroupModal={groupsHook.setShowGroupModal}
-            deleteGroup={groupsHook.deleteGroup}
           />
         )}
       </main>

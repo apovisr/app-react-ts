@@ -79,7 +79,6 @@ export function useGroup() {
         loading,
         addGroup,
         updateGroup,
-        deleteGroup,
         setShowGroupModal,
         setSelectedGroup,
         selectedGroup,

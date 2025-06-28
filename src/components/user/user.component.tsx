@@ -4,7 +4,6 @@ interface UserPageProps {
     users: User[];
     setSelectedUser: (user: User | null) => void;
     setShowUserModal: (show: boolean) => void;
-    deleteUser: (id: number) => void;
 }
 
 
@@ -12,11 +11,10 @@ const UsersPage: React.FC<UserPageProps> = ({
     users,
     setSelectedUser,
     setShowUserModal,
-    deleteUser,
 }) => (
     <div className="p-6 bg-white rounded-lg shadow-md">
     <h1 className="text-3xl font-bold mb-6 text-gray-800 flex justify-between items-center">
-      Clientes
+      Usuarios
       <button
         onClick={() => { setSelectedUser(null); setShowUserModal(true); }}
         className="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition duration-300 ease-in-out"
@@ -47,12 +45,6 @@ const UsersPage: React.FC<UserPageProps> = ({
                     className="text-indigo-600 hover:text-indigo-900 mr-4"
                   >
                     Editar
-                  </button>
-                  <button
-                    onClick={() => deleteUser(cliente.id)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    Eliminar
                   </button>
                 </td>
               </tr>

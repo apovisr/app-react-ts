@@ -15,7 +15,7 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
 }) => (
     <div className="p-6 bg-white rounded-lg shadow-md">
     <h1 className="text-3xl font-bold mb-6 text-gray-800 flex justify-between items-center">
-      Clientes
+      Pagos
       <button
         onClick={() => { setSelectedSettlement(null); setShowSettlementModal(true); }}
         className="px-4 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition duration-300 ease-in-out"
@@ -33,6 +33,7 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Emisor</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receptor</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monto</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
             </tr>
           </thead>
@@ -42,6 +43,7 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.fromTo.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.toMember.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.amount}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.createdAt}</td>
               </tr>
             ))}

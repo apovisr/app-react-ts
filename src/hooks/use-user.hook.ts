@@ -48,7 +48,7 @@ export function useUser() {
     const updateUser = async (updateUser: User) => {
         setLoading(true);
         try {
-            await usersApi.updateUser(updateUser);
+            await usersApi.updateUser(updateUser.id, updateUser);
             setUsers(await usersApi.getUsers());
             showMesage('Producto actualizado satisfactoriamente!', 'success');
             setSelectedUser(null);
@@ -59,28 +59,12 @@ export function useUser() {
         } finally {
             setLoading(false);
         }
-    };
-
-    const deleteUser = async (id: number) => {
-        setLoading(true);
-        try {
-            await usersApi.deleteUser(id);
-            setUsers(await usersApi.getUsers());
-            showMesage('El producto fue eliminado satisfactoriamente!', 'success');
-        } catch (error) {
-            showMesage('No se pudo eliminar el producto.', 'error');
-            console.error("Hubo un error al eliminar el producto:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
+    }
     return {
         users,
         loading,
         addUser,
         updateUser,
-        deleteUser,
         setShowUserModal,
         setSelectedUser,
         selectedUser,
