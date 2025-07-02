@@ -21,7 +21,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
   const settlementsHook = useSettlement(+id);
   const expensesHook = useExpense(+id);
 
-  const loading = groupMembersHook.loading || settlementsHook.loading;
+  const loading = groupMembersHook.loading || settlementsHook.loading || expensesHook.loading;
   const [paginaActual, setPaginaActual] = useState<'group-members' | 'settlements' | 'expenses' | 'calculate'>('group-members');
 
   return (

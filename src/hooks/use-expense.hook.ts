@@ -7,7 +7,7 @@ import { CreateExpense, Expense } from 'model/expense';
 
 export function useExpense(groupId: number) {
     const [expenses, setExpenses] = useState<Expense[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<Boolean>(true);
     const [showExpenseModal, setShowExpenseModal]
         = useState<boolean>(false);
     const [selectedExpense, setSelectedExpense]
@@ -31,9 +31,10 @@ export function useExpense(groupId: number) {
 
     const addExpense = async (createExpense: CreateExpense) => {
         setLoading(true);
-
         try {
-            const response = await expensesApi.createExpense({...createExpense, groupId });
+            
+            console.log(loading)
+            await expensesApi.createExpense({...createExpense, groupId });
             setExpenses(await expensesApi.getExpensesByGroupId(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowExpenseModal(false);
