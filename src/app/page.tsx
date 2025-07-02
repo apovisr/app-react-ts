@@ -48,14 +48,14 @@ export default function Home() {
               className={`px-4 py-2 rounded-md transition duration-300 ease-in-out
                 ${paginaActual === 'users' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:text-white hover:bg-gray-700'}`}
             >
-              Users
+              Usuarios
             </button>
             <button
               onClick={() => setPaginaActual('groups')}
               className={`px-4 py-2 rounded-md transition duration-300 ease-in-out
                 ${paginaActual === 'groups' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:text-white hover:bg-gray-700'}`}
             >
-              Groups
+              Grupos
             </button>
           </div>
         </div>

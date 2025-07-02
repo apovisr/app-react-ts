@@ -12,7 +12,7 @@ export async function getUsersNotBelongGroup(id: number): Promise<User[]> {
 }
 
 export async function createUser(user: Omit<User, 'id'>): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export async function createUser(user: Omit<User, 'id'>): Promise<void> {
 }
 
 export async function updateUser(id:number, user: Omit<User, 'id'|'email'>): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/users/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'

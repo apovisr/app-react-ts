@@ -33,7 +33,7 @@ export function useExpense(groupId: number) {
         setLoading(true);
 
         try {
-            await expensesApi.createExpense({...createExpense, groupId });
+            const response = await expensesApi.createExpense({...createExpense, groupId });
             setExpenses(await expensesApi.getExpensesByGroupId(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowExpenseModal(false);

@@ -77,9 +77,9 @@ const ModalExpense: React.FC<ExpenseModalProps> = ({ expense, groupMembers, clos
             />
           </div>
           <div>
-            <label htmlFor='paidByGroupMemberId' className="block text-sm font-medium text-gray-700">Paid by</label>
+            <label htmlFor='paidByGroupMemberId' className="block text-sm font-medium text-gray-700">Pagado por</label>
             <select name="fromGroupMemberId" value={paidByGroupMemberId} onChange={(e) => setPaidByGroupMemberId(+e.target.value)} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-              <option value="0">Select an User</option>
+              <option value="0">Selectcione un usuario</option>
               {
                 groupMembers.map(e => <option key={e.id} value={e.id}>{e.name}</option>)
               }

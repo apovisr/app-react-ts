@@ -15,7 +15,7 @@ const ModalExpenseDetail: React.FC<ExpenseDetailModalProps> = ({ expense,close }
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Detalle Gasto</h2>
         <form className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre del gasto</label>
             <input
               type="text"
               id="name"

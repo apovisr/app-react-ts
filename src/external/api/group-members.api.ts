@@ -6,7 +6,7 @@ export async function getGroupMembersByGroupId(id: number): Promise<GroupMember[
 }
 
 export async function createGroupMember(groupMember: Omit<GroupMember, 'id'|'name'>): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/group-members`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/group-members`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -16,5 +16,10 @@ export async function createGroupMember(groupMember: Omit<GroupMember, 'id'|'nam
 }
 
 export async function deleteGroupMember(id: number): Promise<void> {
-    //TODO
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/group-members/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 }

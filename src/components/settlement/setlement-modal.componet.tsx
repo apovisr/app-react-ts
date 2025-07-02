@@ -34,7 +34,7 @@ const ModalSettlement: React.FC<SettlementModalProps> = ({ groupMembers, close, 
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Agregar Pago</h2>
         <form onSubmit={sendForm} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Descripcion</label>
             <input
               type="text"
               id="name"
@@ -44,25 +44,25 @@ const ModalSettlement: React.FC<SettlementModalProps> = ({ groupMembers, close, 
             />
           </div>
           <div>
-            <label htmlFor='fromGroupMemberId' className="block text-sm font-medium text-gray-700">From</label>
+            <label htmlFor='fromGroupMemberId' className="block text-sm font-medium text-gray-700">Emisor</label>
             <select name="fromGroupMemberId" value={fromGroupMemberId} onChange={(e) => setFromGroupMemberId(+e.target.value)} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-              <option value="0">Select an User</option>
+              <option value="0">Seleccione un usuario</option>
               {
                 groupMembers.map(e => <option key={e.id} value={e.id}>{e.name}</option>)
               }
             </select>
           </div>
           <div>
-            <label htmlFor='toGroupMemberId' className="block text-sm font-medium text-gray-700">Owner</label>
+            <label htmlFor='toGroupMemberId' className="block text-sm font-medium text-gray-700">Receptor</label>
             <select name="toGroupMemberId" value={toGroupMemberId} onChange={(e) => setToGroupMemberId(+e.target.value)} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-              <option value="0">Select an User</option>
+              <option value="0">Seleccione un usuario</option>
               {
                 groupMembers.filter(e => e.id != fromGroupMemberId).map(e => <option key={e.id} value={e.id}>{e.name}</option>)
               }
             </select>
           </div>
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Monto total</label>
+            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Monto</label>
             <input
               type="number"
               id="amount"

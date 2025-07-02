@@ -31,7 +31,8 @@ const GroupMembersPage: React.FC<GroupMemberPageProps> = ({
         <table className="min-w-full bg-white rounded-lg overflow-hidden">
           <thead className="bg-gray-100 border-b border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Accion</th>
               
             </tr>
           </thead>
@@ -39,6 +40,14 @@ const GroupMembersPage: React.FC<GroupMemberPageProps> = ({
             {groupMembers.map((cliente) => (
               <tr key={cliente.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{cliente.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    className="text-red-600 hover:text-red-900"
+                    onClick={() => deleteGroupMember(cliente.id)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

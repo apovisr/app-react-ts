@@ -7,7 +7,7 @@ export async function getSettlements(groupId: number): Promise<Settlement[]> {
 
 
 export async function createSettlement(settlement: CreateSettlement): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/settlements`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/settlements`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

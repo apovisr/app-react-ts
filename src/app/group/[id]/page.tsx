@@ -50,7 +50,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
               className={`px-4 py-2 rounded-md transition duration-300 ease-in-out
                 ${paginaActual === 'group-members' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-300 hover:text-white hover:bg-gray-700'}`}
             >
-              Members
+              Miembros
             </button>
             <button
               onClick={() => setPaginaActual('settlements')}

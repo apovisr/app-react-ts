@@ -7,7 +7,7 @@ export async function getExpensesByGroupId(id: number): Promise<Expense[]> {
 }
 
 export async function createExpense(expense: CreateExpense): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/expenses`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/expenses`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export async function getExpenseById(id: number): Promise<Expense> {
 }
 
 export async function deleteExpenseById(id: number): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/expenses/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/expenses/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'

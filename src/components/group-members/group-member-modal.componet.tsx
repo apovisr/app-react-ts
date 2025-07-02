@@ -13,7 +13,7 @@ const ModalGroupMember: React.FC<GroupMemberModalProps> = ({ users, close, save 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Registrar Nuevo GroupMember</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Registrar Nuevo Miembro</h2>
         <div className="space-y-4">
           <div>
             <div className="p-6 bg-white rounded-lg shadow-md">

@@ -6,7 +6,7 @@ export async function getGroups(): Promise<Group[]> {
 }
 
 export async function createGroup(group: Omit<Group, 'id'>): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ export async function createGroup(group: Omit<Group, 'id'>): Promise<void> {
 }
 
 export async function updateGroup(group: Group): Promise<void> {
-    fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups/${group.id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/groups/${group.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'

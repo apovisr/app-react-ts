@@ -23,10 +23,10 @@ const ModalUser: React.FC<UserModalProps> = ({ user, close, save }) => {
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">{user ? 'Editar User' : 'Registrar Nuevo User'}</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">{user ? 'Editar User' : 'Registrar Nuevo Usuario'}</h2>
         <form onSubmit={sendForm} className="space-y-4">
             <div>
-                <label htmlFor="nameUser" className="block text-sm font-medium text-gray-700">Name</label>
+                <label htmlFor="nameUser" className="block text-sm font-medium text-gray-700">Nombre</label>
                 <input
                 type="text"
                 id="nameUser"
@@ -37,11 +37,11 @@ const ModalUser: React.FC<UserModalProps> = ({ user, close, save }) => {
                 />
             </div>
           <div>
-            <label htmlFor="emailUser" className="block text-sm font-medium text-gray-700">Descripcion User</label>
+            <label htmlFor="emailUser" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="text"
               id="emailUser"
-              disabled
+              disabled={!!user}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"

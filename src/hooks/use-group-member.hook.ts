@@ -38,7 +38,8 @@ export function useGroupMember(groupId: number) {
 
         try {
             await groupMembersApi.createGroupMember({groupId, userId});
-            setGroupMembers(await groupMembersApi.getGroupMembersByGroupId(groupId));
+            const groupMembers = await groupMembersApi.getGroupMembersByGroupId(groupId)
+            setGroupMembers(groupMembers);
             setUsers(await getUsersNotBelongGroup(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowGroupMemberModal(false);

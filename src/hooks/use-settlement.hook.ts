@@ -32,7 +32,7 @@ export function useSettlement(groupId: number) {
         setLoading(true);
 
         try {
-            await settlementsApi.createSettlement({...settlement, groupId});
+            const response = await settlementsApi.createSettlement({...settlement, groupId});
             setSettlements(await settlementsApi.getSettlements(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowSettlementModal(false);
