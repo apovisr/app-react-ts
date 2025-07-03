@@ -16,3 +16,12 @@ export async function createSettlement(settlement: CreateSettlement): Promise<vo
     });
 }
 
+export async function deleteSettlementById(id: number): Promise<void> {
+    await fetch(`${process.env.NEXT_PUBLIC_URL_BASE_API}/settlements/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+

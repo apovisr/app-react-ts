@@ -32,10 +32,24 @@ export function useSettlement(groupId: number) {
         setLoading(true);
 
         try {
-            const response = await settlementsApi.createSettlement({...settlement, groupId});
+            const response = await settlementsApi.createSettlement({ ...settlement, groupId });
             setSettlements(await settlementsApi.getSettlements(groupId));
             showMesage('Producto agregado satisfactoriamente!', 'success');
             setShowSettlementModal(false);
+        } catch (error) {
+            showMesage('No se pudo agregar el producto.', 'error');
+            console.error("Hubo un error al agregar el producto:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const deleteSettlementById = async (expenseId: number) => {
+        setLoading(true);
+
+        try {
+            await settlementsApi.deleteSettlementById(expenseId);
+            setSettlements(await settlementsApi.getSettlements(groupId));
         } catch (error) {
             showMesage('No se pudo agregar el producto.', 'error');
             console.error("Hubo un error al agregar el producto:", error);
@@ -50,6 +64,7 @@ export function useSettlement(groupId: number) {
         addSettlement,
         setShowSettlementModal,
         setSelectedSettlement,
+        deleteSettlementById,
         selectedSettlement,
         showSettlementModal
     };

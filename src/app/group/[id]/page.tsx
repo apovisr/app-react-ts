@@ -92,6 +92,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
             settlements={settlementsHook.settlements}
             setSelectedSettlement={settlementsHook.setSelectedSettlement}
             setShowSettlementModal={settlementsHook.setShowSettlementModal}
+            deleteSettlement={settlementsHook.deleteSettlementById}
           />
         )}
 

@@ -5,6 +5,7 @@ interface SettlementPageProps {
     settlements: Settlement[];
     setSelectedSettlement: (settlement: Settlement | null) => void;
     setShowSettlementModal: (show: boolean) => void;
+    deleteSettlement: (id: number) => void;
 }
 
 
@@ -12,6 +13,7 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
     settlements,
     setSelectedSettlement,
     setShowSettlementModal,
+    deleteSettlement
 }) => (
     <div className="p-6 bg-white rounded-lg shadow-md">
     <h1 className="text-3xl font-bold mb-6 text-gray-800 flex justify-between items-center">
@@ -35,6 +37,7 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receptor</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monto</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -45,6 +48,14 @@ const SettlementsPage: React.FC<SettlementPageProps> = ({
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.toMember.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.amount}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{settlement.createdAt}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    className="text-red-600 hover:text-red-900"
+                    onClick={() => deleteSettlement(settlement.id)}
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
